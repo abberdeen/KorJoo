@@ -1,0 +1,70 @@
+@page "/jobs"
+
+<PageTitle>Jobs</PageTitle>
+<RadzenStack>
+    <RadzenRow AlignItems="AlignItems.Center">
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenText Text="Jobs" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                <RadzenButton Icon="add_circle_outline" Text="Add" Click="@AddButtonClick" Variant="Variant.Flat" />
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+    <RadzenRow>
+      <RadzenColumn SizeMD=12>
+        <RadzenDataGrid @ref="grid0" ColumnWidth="200px"  AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+            Data="@jobs"    TItem="KorJoo.Models.korjoo.Job" RowSelect="@EditRow" >
+            <Columns>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="Id" Title="Id">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="SpecializationId" Title="Specialization Id">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="CityId" Title="City Id">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="Name" Title="Name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="Code" Title="Code">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="SalaryFrom" Title="Salary From">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="SalaryTo" Title="Salary To">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="SalaryAfterTax" Title="Salary After Tax">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="SalaryCurrency" Title="Salary Currency">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="ExperienceYear" Title="Experience Year">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="Description" Title="Description">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="ContactPersonId" Title="Contact Person Id">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="ContactPersonVisible" Title="Contact Person Visible">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="WorkOnlyOnWeekendDays" Title="Work Only On Weekend Days">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="HalfShifts" Title="Half Shifts">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="EmploymentType" Title="Employment Type">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="WorkScheduleType" Title="Work Schedule Type">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="CompanyId" Title="Company Id">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                    <Template Context="job">
+
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
+                            Shade="Shade.Lighter" Variant="Variant.Flat"
+                            Click=@(args => GridDeleteButtonClick(args, job)) @onclick:stopPropagation="true" />
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+
+        </RadzenDataGrid>
+
+    </RadzenColumn>
+  </RadzenRow>
+</RadzenStack>

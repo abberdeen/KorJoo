@@ -1,0 +1,86 @@
+@page "/applicants"
+
+<PageTitle>Applicants</PageTitle>
+<RadzenStack>
+    <RadzenRow AlignItems="AlignItems.Center">
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenText Text="Applicants" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                <RadzenButton Icon="add_circle_outline" Text="Add" Click="@AddButtonClick" Variant="Variant.Flat" />
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+    <RadzenRow>
+      <RadzenColumn SizeMD=12>
+        <RadzenDataGrid @ref="grid0" ColumnWidth="200px"  AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+            Data="@applicants"    TItem="KorJoo.Models.korjoo.Applicant" RowSelect="@EditRow" >
+            <Columns>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Id" Title="Id">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="LivingCityId" Title="Living City Id">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="FirstName" Title="First Name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="LastName" Title="Last Name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="FatherName" Title="Father Name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="GenderType" Title="Gender Type">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Birthday" Title="Birthday">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Phone" Title="Phone">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="IsPhoneDesired" Title="Is Phone Desired">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="PhoneComment" Title="Phone Comment">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Email" Title="Email">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="IsEmailDesired" Title="Is Email Desired">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Linkedin" Title="Linkedin">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Telegram" Title="Telegram">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Skype" Title="Skype">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Stackoverflow" Title="Stackoverflow">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Github" Title="Github">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Dribble" Title="Dribble">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Behance" Title="Behance">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="DesiredJobName" Title="Desired Job Name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="SpecializationId" Title="Specialization Id">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="Salary" Title="Salary">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="SalaryCurrency" Title="Salary Currency">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="EmploymentType" Title="Employment Type">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="WorkSchedule" Title="Work Schedule">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Property="About" Title="About">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Applicant" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                    <Template Context="applicant">
+
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
+                            Shade="Shade.Lighter" Variant="Variant.Flat"
+                            Click=@(args => GridDeleteButtonClick(args, applicant)) @onclick:stopPropagation="true" />
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+
+        </RadzenDataGrid>
+
+    </RadzenColumn>
+  </RadzenRow>
+</RadzenStack>

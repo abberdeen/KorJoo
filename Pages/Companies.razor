@@ -1,0 +1,54 @@
+@page "/companies"
+
+<PageTitle>Companies</PageTitle>
+<RadzenStack>
+    <RadzenRow AlignItems="AlignItems.Center">
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenText Text="Companies" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                <RadzenButton Icon="add_circle_outline" Text="Add" Click="@AddButtonClick" Variant="Variant.Flat" />
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+    <RadzenRow>
+      <RadzenColumn SizeMD=12>
+        <RadzenDataGrid @ref="grid0" ColumnWidth="200px"  AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+            Data="@companies"    TItem="KorJoo.Models.korjoo.Company" RowSelect="@EditRow" >
+            <Columns>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="Id" Title="Id">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="Name" Title="Name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="TypeId" Title="Type Id">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="Description" Title="Description">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="Logo" Title="Logo">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="Instagram" Title="Instagram">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="Telegram" Title="Telegram">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="Facebook" Title="Facebook">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="YouTube" Title="You Tube">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="Website" Title="Website">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                    <Template Context="company">
+
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
+                            Shade="Shade.Lighter" Variant="Variant.Flat"
+                            Click=@(args => GridDeleteButtonClick(args, company)) @onclick:stopPropagation="true" />
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+
+        </RadzenDataGrid>
+
+    </RadzenColumn>
+  </RadzenRow>
+</RadzenStack>

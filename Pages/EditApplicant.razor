@@ -1,0 +1,160 @@
+@page "/edit-applicant"
+
+<PageTitle>Edit Applicant</PageTitle>
+<RadzenRow>
+    <RadzenColumn SizeMD="9">
+    <RadzenLabel style="font-weight: bold" Text="Item no longer available." Visible="@(!canEdit)" />
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3">
+    <RadzenButton ButtonStyle="ButtonStyle.Secondary" style="margin-bottom: 20px" Text="Close" Visible="@(!canEdit)" Click="@CancelButtonClick" />
+    </RadzenColumn>
+</RadzenRow>
+<RadzenRow>
+    <RadzenColumn SizeMD="9">
+    <RadzenLabel style="font-weight: bold" Text="Another user has made conflicting changes to one or more of the fields you have modified. Please reload." Visible="@hasChanges" />
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3">
+    <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="autorenew" style="margin-bottom: 20px" Text="Reload" Visible="@hasChanges" Click="@ReloadButtonClick" />
+    </RadzenColumn>
+</RadzenRow>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Applicant</RadzenAlert>
+        <RadzenTemplateForm TItem="KorJoo.Models.korjoo.Applicant" Data="@applicant" Visible="@(applicant != null && canEdit)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="Living City Id" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicant.LivingCityId" Name="LivingCityId" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="First Name" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.FirstName" Name="FirstName" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Last Name" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.LastName" Name="LastName" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Father Name" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.FatherName" Name="FatherName" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Gender Type" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicant.GenderType" Name="GenderType" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Birthday" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@applicant.Birthday" Name="Birthday" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Phone" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.Phone" Name="Phone" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Is Phone Desired" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicant.IsPhoneDesired" Name="IsPhoneDesired" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Phone Comment" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.PhoneComment" Name="PhoneComment" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Email" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.Email" Name="Email" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenRow style="margin-bottom: 1rem">
+                <RadzenColumn SizeMD="3">
+                    <RadzenLabel Text="Is Email Desired" Component="IsEmailDesired" style="width: 100%" />
+                </RadzenColumn>
+                <RadzenColumn SizeMD="9">
+                    <RadzenCheckBox @bind-Value="@applicant.IsEmailDesired" Name="IsEmailDesired" />
+                </RadzenColumn>
+            </RadzenRow>
+            <RadzenFormField Text="Linkedin" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.Linkedin" Name="Linkedin" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Telegram" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.Telegram" Name="Telegram" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Skype" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.Skype" Name="Skype" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Stackoverflow" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.Stackoverflow" Name="Stackoverflow" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Github" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.Github" Name="Github" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Dribble" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.Dribble" Name="Dribble" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Behance" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.Behance" Name="Behance" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Desired Job Name" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.DesiredJobName" Name="DesiredJobName" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Specialization Id" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicant.SpecializationId" Name="SpecializationId" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Salary" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicant.Salary" Name="Salary" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Salary Currency" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicant.SalaryCurrency" Name="SalaryCurrency" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Employment Type" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicant.EmploymentType" Name="EmploymentType" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Work Schedule" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicant.WorkSchedule" Name="WorkSchedule" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="About" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicant.About" Name="About" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

@@ -1,0 +1,32 @@
+@page "/add-job-language"
+
+<PageTitle>Add JobLanguage</PageTitle>
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save JobLanguage</RadzenAlert>
+        <RadzenTemplateForm TItem="KorJoo.Models.korjoo.JobLanguage" Data="@jobLanguage" Visible="@(jobLanguage != null && canEdit)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="Language" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@jobLanguage.Language" Name="Language" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Language Level" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@jobLanguage.LanguageLevel" Name="LanguageLevel" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Job" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@jobsForJobId" TextProperty="Name" ValueProperty="Id" AllowClear=true
+                          style="display: block; width: 100%" @bind-Value="@jobLanguage.JobId" Name="JobId"
+                           />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

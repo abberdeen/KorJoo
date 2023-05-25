@@ -1,0 +1,126 @@
+@page "/edit-job"
+
+<PageTitle>Edit Job</PageTitle>
+<RadzenRow>
+    <RadzenColumn SizeMD="9">
+    <RadzenLabel style="font-weight: bold" Text="Item no longer available." Visible="@(!canEdit)" />
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3">
+    <RadzenButton ButtonStyle="ButtonStyle.Secondary" style="margin-bottom: 20px" Text="Close" Visible="@(!canEdit)" Click="@CancelButtonClick" />
+    </RadzenColumn>
+</RadzenRow>
+<RadzenRow>
+    <RadzenColumn SizeMD="9">
+    <RadzenLabel style="font-weight: bold" Text="Another user has made conflicting changes to one or more of the fields you have modified. Please reload." Visible="@hasChanges" />
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3">
+    <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="autorenew" style="margin-bottom: 20px" Text="Reload" Visible="@hasChanges" Click="@ReloadButtonClick" />
+    </RadzenColumn>
+</RadzenRow>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Job</RadzenAlert>
+        <RadzenTemplateForm TItem="KorJoo.Models.korjoo.Job" Data="@job" Visible="@(job != null && canEdit)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="Specialization Id" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.SpecializationId" Name="SpecializationId" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="City Id" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.CityId" Name="CityId" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Name" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@job.Name" Name="Name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Code" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@job.Code" Name="Code" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Salary From" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.SalaryFrom" Name="SalaryFrom" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Salary To" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.SalaryTo" Name="SalaryTo" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenRow style="margin-bottom: 1rem">
+                <RadzenColumn SizeMD="3">
+                    <RadzenLabel Text="Salary After Tax" Component="SalaryAfterTax" style="width: 100%" />
+                </RadzenColumn>
+                <RadzenColumn SizeMD="9">
+                    <RadzenCheckBox @bind-Value="@job.SalaryAfterTax" Name="SalaryAfterTax" />
+                </RadzenColumn>
+            </RadzenRow>
+            <RadzenFormField Text="Salary Currency" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.SalaryCurrency" Name="SalaryCurrency" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Experience Year" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.ExperienceYear" Name="ExperienceYear" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Description" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@job.Description" Name="Description" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Contact Person Id" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.ContactPersonId" Name="ContactPersonId" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenRow style="margin-bottom: 1rem">
+                <RadzenColumn SizeMD="3">
+                    <RadzenLabel Text="Contact Person Visible" Component="ContactPersonVisible" style="width: 100%" />
+                </RadzenColumn>
+                <RadzenColumn SizeMD="9">
+                    <RadzenCheckBox @bind-Value="@job.ContactPersonVisible" Name="ContactPersonVisible" />
+                </RadzenColumn>
+            </RadzenRow>
+            <RadzenRow style="margin-bottom: 1rem">
+                <RadzenColumn SizeMD="3">
+                    <RadzenLabel Text="Work Only On Weekend Days" Component="WorkOnlyOnWeekendDays" style="width: 100%" />
+                </RadzenColumn>
+                <RadzenColumn SizeMD="9">
+                    <RadzenCheckBox @bind-Value="@job.WorkOnlyOnWeekendDays" Name="WorkOnlyOnWeekendDays" />
+                </RadzenColumn>
+            </RadzenRow>
+            <RadzenFormField Text="Half Shifts" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.HalfShifts" Name="HalfShifts" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Employment Type" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.EmploymentType" Name="EmploymentType" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Work Schedule Type" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.WorkScheduleType" Name="WorkScheduleType" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Company Id" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.CompanyId" Name="CompanyId" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

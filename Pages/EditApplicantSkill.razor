@@ -1,0 +1,51 @@
+@page "/edit-applicant-skill"
+
+<PageTitle>Edit ApplicantSkill</PageTitle>
+<RadzenRow>
+    <RadzenColumn SizeMD="9">
+    <RadzenLabel style="font-weight: bold" Text="Item no longer available." Visible="@(!canEdit)" />
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3">
+    <RadzenButton ButtonStyle="ButtonStyle.Secondary" style="margin-bottom: 20px" Text="Close" Visible="@(!canEdit)" Click="@CancelButtonClick" />
+    </RadzenColumn>
+</RadzenRow>
+<RadzenRow>
+    <RadzenColumn SizeMD="9">
+    <RadzenLabel style="font-weight: bold" Text="Another user has made conflicting changes to one or more of the fields you have modified. Please reload." Visible="@hasChanges" />
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3">
+    <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="autorenew" style="margin-bottom: 20px" Text="Reload" Visible="@hasChanges" Click="@ReloadButtonClick" />
+    </RadzenColumn>
+</RadzenRow>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save ApplicantSkill</RadzenAlert>
+        <RadzenTemplateForm TItem="KorJoo.Models.korjoo.ApplicantSkill" Data="@applicantSkill" Visible="@(applicantSkill != null && canEdit)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="Created At" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@applicantSkill.CreatedAt" Name="CreatedAt" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Applicant" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@applicantsForApplicantId" TextProperty="FirstName" ValueProperty="Id" AllowClear=true
+                          style="display: block; width: 100%" @bind-Value="@applicantSkill.ApplicantId" Name="ApplicantId"
+                           />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Skill" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@skillsForSkillId" TextProperty="Name" ValueProperty="Id" AllowClear=true
+                          style="display: block; width: 100%" @bind-Value="@applicantSkill.SkillId" Name="SkillId"
+                           />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

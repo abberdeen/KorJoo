@@ -1,0 +1,73 @@
+@page "/add-applicant-work-history"
+
+<PageTitle>Add ApplicantWorkHistory</PageTitle>
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save ApplicantWorkHistory</RadzenAlert>
+        <RadzenTemplateForm TItem="KorJoo.Models.korjoo.ApplicantWorkHistory" Data="@applicantWorkHistory" Visible="@(applicantWorkHistory != null && canEdit)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="Company Id" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.CompanyId" Name="CompanyId" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Company Name" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.CompanyName" Name="CompanyName" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Position" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.Position" Name="Position" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Location" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.Location" Name="Location" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Start Date" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.StartDate" Name="StartDate" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="End Date" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.EndDate" Name="EndDate" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenRow style="margin-bottom: 1rem">
+                <RadzenColumn SizeMD="3">
+                    <RadzenLabel Text="Is Until Now" Component="IsUntilNow" style="width: 100%" />
+                </RadzenColumn>
+                <RadzenColumn SizeMD="9">
+                    <RadzenCheckBox @bind-Value="@applicantWorkHistory.IsUntilNow" Name="IsUntilNow" />
+                </RadzenColumn>
+            </RadzenRow>
+            <RadzenFormField Text="Description" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.Description" Name="Description" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenRow style="margin-bottom: 1rem">
+                <RadzenColumn SizeMD="3">
+                    <RadzenLabel Text="Is Voluntering" Component="IsVoluntering" style="width: 100%" />
+                </RadzenColumn>
+                <RadzenColumn SizeMD="9">
+                    <RadzenCheckBox @bind-Value="@applicantWorkHistory.IsVoluntering" Name="IsVoluntering" />
+                </RadzenColumn>
+            </RadzenRow>
+            <RadzenFormField Text="Applicant" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@applicantsForApplicantId" TextProperty="FirstName" ValueProperty="Id" AllowClear=true
+                          style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.ApplicantId" Name="ApplicantId"
+                           />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+
