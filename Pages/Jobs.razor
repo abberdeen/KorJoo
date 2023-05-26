@@ -1,17 +1,13 @@
-@page "/jobs"
+﻿@page "/jobs"
 @attribute [Authorize]
 
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Jobs> L
-<PageTitle>Jobs</PageTitle>
+<PageTitle>Ҷойҳои корӣ</PageTitle>
 <RadzenStack>
     <RadzenRow AlignItems="AlignItems.Center">
+        <RadzenColumn Size="12" SizeMD="6">            <RadzenText Text="Ҷойҳои корӣ" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />        </RadzenColumn>
         <RadzenColumn Size="12" SizeMD="6">
-            <RadzenText Text="Jobs" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
-        </RadzenColumn>
-        <RadzenColumn Size="12" SizeMD="6">
-            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
-                <RadzenButton Icon="add_circle_outline" Text="????? ??????" Click="@AddButtonClick" Variant="Variant.Flat" />
-            </RadzenStack>
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">                <AuthorizeView Roles="company,hragency">                    <Authorized>                        <RadzenButton Icon="add_circle_outline" Text="Илова кардан" Click="@AddButtonClick" Variant="Variant.Flat" />                    </Authorized>                </AuthorizeView>            </RadzenStack>
         </RadzenColumn>
     </RadzenRow>
     <RadzenRow>
@@ -19,12 +15,12 @@
         <RadzenDataGrid @ref="grid0" ColumnWidth="200px"  AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
             Data="@jobs"    TItem="KorJoo.Models.korjoo.Job" RowSelect="@EditRow" >
             <Columns>
-                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="Id" Title="Id">
-                </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="SpecializationId" Title="Specialization Id">
+             @*   <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="Id" Title="Id">
+                </RadzenDataGridColumn>*@
+              @*  <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="SpecializationId" Title="Specialization Id">
                 </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="CityId" Title="City Id">
-                </RadzenDataGridColumn>
+                </RadzenDataGridColumn>*@
                 <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="Name" Title="Name">
                 </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Job" Property="Code" Title="Code">

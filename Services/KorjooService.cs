@@ -86,7 +86,7 @@ namespace KorJoo
                               .AsNoTracking()
                               .FirstOrDefault(i => i.UserId == userId);
  
-            return await Task.FromResult(applicant.Id);
+            return await Task.FromResult(applicant == null ? 0 : applicant.Id  );
         }
 
         public async Task<int> GetCompanyIdByUserId(string userId)

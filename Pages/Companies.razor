@@ -1,26 +1,22 @@
 ﻿@page "/companies"
 @attribute [Authorize]
 
-@inject Microsoft.Extensions.Localization.IStringLocalizer<Companies> L
-<PageTitle>Companies</PageTitle>
-<RadzenStack>
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Companies> L<PageTitle>Корхонаҳо</PageTitle><RadzenStack>
     <RadzenRow AlignItems="AlignItems.Center">
-        <RadzenColumn Size="12" SizeMD="6">
-            <RadzenText Text="Companies" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
-        </RadzenColumn>
-        <RadzenColumn Size="12" SizeMD="6">
+        <RadzenColumn Size="12" SizeMD="6">            <RadzenText Text="Корхонаҳо" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />        </RadzenColumn>
+      @*  <RadzenColumn Size="12" SizeMD="6">
             <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
                 <RadzenButton Icon="add_circle_outline" Text="Илова кардан" Click="@AddButtonClick" Variant="Variant.Flat" />
             </RadzenStack>
-        </RadzenColumn>
+        </RadzenColumn>*@
     </RadzenRow>
     <RadzenRow>
       <RadzenColumn SizeMD=12>
         <RadzenDataGrid @ref="grid0" ColumnWidth="200px"  AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
             Data="@companies"    TItem="KorJoo.Models.korjoo.Company" RowSelect="@EditRow" >
             <Columns>
-                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="Id" Title="Id">
-                </RadzenDataGridColumn>
+            @*    <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="Id" Title="Id">
+                </RadzenDataGridColumn>*@
                 <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="Name" Title="Name">
                 </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.Company" Property="TypeId" Title="Type Id">
