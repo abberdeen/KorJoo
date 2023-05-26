@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace KorJoo.Pages
 {
@@ -37,6 +38,7 @@ namespace KorJoo.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            Id = await korjooService.GetApplicantIdByUserId(Security.User.Id);
             applicant = await korjooService.GetApplicantById(Id);
         }
         protected bool errorVisible;

@@ -13,7 +13,7 @@ using Radzen.Blazor;
 
 namespace KorJoo.Shared
 {
-    public partial class MainLayout
+    public partial class Header
     {
         [Inject]
         protected IJSRuntime JSRuntime { get; set; }

@@ -29,6 +29,6 @@ namespace KorJoo.Models.korjoo
         public string YouTube { get; set; }
 
         public string Website { get; set; }
-
+        public string UserId { get;  set; }
     }
 }

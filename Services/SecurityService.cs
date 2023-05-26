@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Radzen;
 
 using KorJoo.Models;
+using KorJoo.Data.Enums;
 
 namespace KorJoo
 {
@@ -219,13 +220,14 @@ namespace KorJoo
             }
         }
 
-        public async Task Register(string userName, string password)
+        public async Task Register(string userName, string password, UserRole role)
         {
             var uri =  new Uri($"{navigationManager.BaseUri}Account/Register");
 
             var content = new FormUrlEncodedContent(new Dictionary<string, string> {
                 { "userName", userName },
-                { "password", password }
+                { "password", password },
+                { "role", role.ToString().ToLower()}
             });
 
             var response = await httpClient.PostAsync(uri, content);

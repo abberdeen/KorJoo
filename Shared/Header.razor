@@ -1,0 +1,39 @@
+@inherits LayoutComponentBase
+@inject Microsoft.Extensions.Localization.IStringLocalizer<MainLayout> L
+
+<RadzenHeader>
+    <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Center" Gap="0">
+        <RadzenColumn Size="8">
+            <RadzenStack Orientation="Orientation.Horizontal"
+                         AlignItems="AlignItems.Center">
+
+                <RadzenSidebarToggle Click="@SidebarToggleClick"></RadzenSidebarToggle>
+
+                <RadzenMenu Click="OnParentClicked">
+                    <RadzenMenuItem Text="Ҷойҳои корӣ" Icon="" />
+                    <RadzenMenuItem Text="Мутахассисон" Icon="" />
+                    <RadzenMenuItem Text="Корхонахо" Icon="" />
+                    <RadzenMenuItem Text="Курсҳои омӯзишӣ" Icon="" />
+                </RadzenMenu>
+
+            </RadzenStack>
+        </RadzenColumn>
+        <RadzenColumn Size="4">
+            <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End">
+                @* <CulturePicker /> *@
+                <RadzenProfileMenu Visible="@Security.IsAuthenticated()" Click="@ProfileMenuClick">
+                    <ChildContent>
+                        <RadzenProfileMenuItem Path="profile" Icon="settings" Text="Profile" />
+                        <RadzenProfileMenuItem Path="application-users" Icon="person" Text="Users" />
+                        <RadzenProfileMenuItem Path="application-roles" Icon="security" Text="Roles" />
+                        <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new" />
+                    </ChildContent>
+                    <Template>
+                        @Security.User?.Name
+                        <RadzenGravatar Email="@Security.User?.Name" />
+                    </Template>
+                </RadzenProfileMenu>
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+</RadzenHeader>

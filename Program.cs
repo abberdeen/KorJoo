@@ -6,6 +6,7 @@ using KorJoo.Models;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.AspNetCore.Components.Authorization;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -32,7 +33,22 @@ builder.Services.AddDbContext<ApplicationIdentityDbContext>(options =>
 {
     options.UseMySql(builder.Configuration.GetConnectionString("korjooConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("korjooConnection")));
 });
-builder.Services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationIdentityDbContext>().AddDefaultTokenProviders();
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
+    .AddEntityFrameworkStores<ApplicationIdentityDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{ 
+    options.User.RequireUniqueEmail = true; 
+    options.SignIn.RequireConfirmedEmail = false; 
+    //
+    options.Password.RequiredLength = 0;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+});
+
 builder.Services.AddControllers().AddOData(o =>
 {
     var oDataBuilder = new ODataConventionModelBuilder();

@@ -80,6 +80,24 @@ namespace KorJoo
 
         partial void OnApplicantCoursesTestsRead(ref IQueryable<KorJoo.Models.korjoo.ApplicantCoursesTest> items);
 
+        public async Task<int> GetApplicantIdByUserId(string userId)
+        {
+            var applicant  = Context.Applicants
+                              .AsNoTracking()
+                              .FirstOrDefault(i => i.UserId == userId);
+ 
+            return await Task.FromResult(applicant.Id);
+        }
+
+        public async Task<int> GetCompanyIdByUserId(string userId)
+        {
+            var company = Context.Companies
+                              .AsNoTracking()
+                              .FirstOrDefault(i => i.UserId == userId);
+
+            return await Task.FromResult(company.Id);
+        }
+
         public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantCoursesTest>> GetApplicantCoursesTests(Query query = null)
         {
             var items = Context.ApplicantCoursesTests.AsQueryable();

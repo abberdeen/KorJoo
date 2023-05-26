@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
+using KorJoo.Data.Enums;
 
 namespace KorJoo.Pages
 {
@@ -35,6 +36,8 @@ namespace KorJoo.Pages
         protected bool errorVisible;
         protected string error;
 
+        UserRole userRole = UserRole.Applicant;
+
         [Inject]
         protected SecurityService Security { get; set; }
 
@@ -49,7 +52,7 @@ namespace KorJoo.Pages
             {
                 isBusy = true;
 
-                await Security.Register(user.Email, user.Password);
+                await Security.Register(user.Email, user.Password, userRole);
 
                 DialogService.Close(true);
             }

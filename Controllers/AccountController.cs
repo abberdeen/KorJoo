@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+﻿using System.Security.Claims; 
+using Microsoft.AspNetCore.Authorization; 
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using KorJoo.Models;
+using Microsoft.AspNetCore.Mvc; 
+using KorJoo.Models; 
+using KorJoo.Data.Enums; 
 
 namespace KorJoo.Controllers
 {
@@ -22,15 +15,17 @@ namespace KorJoo.Controllers
         private readonly RoleManager<ApplicationRole> roleManager;
         private readonly IWebHostEnvironment env;
         private readonly IConfiguration configuration;
-    
+        private readonly korjooService korjooService; 
         public AccountController(IWebHostEnvironment env, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager,
-            RoleManager<ApplicationRole> roleManager, IConfiguration configuration)
+            RoleManager<ApplicationRole> roleManager, IConfiguration configuration,
+            korjooService korjooService)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.env = env;
             this.configuration = configuration;
+            this.korjooService = korjooService;
         }
 
         private IActionResult RedirectWithError(string error, string redirectUrl = null)
@@ -81,13 +76,13 @@ namespace KorJoo.Controllers
 
                 if (user == null)
                 {
-                    return RedirectWithError("Invalid user or password", redirectUrl);
+                    return RedirectWithError("Почтаи электронӣ ё гузарвожаи нодуруст", redirectUrl);
                 }
 
-                if (!user.EmailConfirmed)
-                {
-                    return RedirectWithError("User email not confirmed", redirectUrl);
-                }
+                //if (!user.EmailConfirmed)
+                //{
+                //    return RedirectWithError("User email not confirmed", redirectUrl);
+                //}
                 var result = await signInManager.PasswordSignInAsync(userName, password, false, false);
 
                 if (result.Succeeded)
@@ -143,36 +138,63 @@ namespace KorJoo.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(string userName, string password)
+        public async Task<IActionResult> Register(string userName, string password, string role)
         {           
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
             {
                 return BadRequest("Invalid user name or password.");
             }
 
-            var user = new ApplicationUser { UserName = userName, Email = userName };
+            var roles = new List<ApplicationRole>();
+            if (role != null)
+            {  
+                var userrole = await roleManager.FindByNameAsync(role);
+                if (userrole != null) 
+                {
+                    roles.Add(userrole);
+                }
+             }
+
+            var user = new ApplicationUser { UserName = userName, Email = userName, Roles = roles };
             var result = await userManager.CreateAsync(user, password);
-
-            if (result.Succeeded)
+            if (result.Succeeded) 
             {
-                try
+                if (role == UserRole.Applicant.ToString().ToLower()) 
                 {
-                    var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
-
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, protocol: Request.Scheme);
-
-                    var body = string.Format(@"<a href=""{0}"">{1}</a>", callbackUrl, "Please confirm your registration");
-
-                    await SendEmailAsync(user.Email, "Confirm your registration", body);
-
-
-                    return Ok();
+                    await korjooService.CreateApplicant(
+                        new Models.korjoo.Applicant() 
+                        { UserId = user .Id });
                 }
-                catch (Exception ex)
+                else if (
+                    role == UserRole.Company.ToString().ToLower() || 
+                    role == UserRole.HrAgency.ToString().ToLower())
                 {
-                    return BadRequest(ex.Message);
+                    await korjooService.CreateCompany(
+                        new Models.korjoo.Company()
+                        { UserId = user.Id });
                 }
+                return Ok();
             }
+            //if (result.Succeeded)
+            //{
+            //    try
+            //    {
+            //        var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
+
+            //        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, protocol: Request.Scheme);
+
+            //        var body = string.Format(@"<a href=""{0}"">{1}</a>", callbackUrl, "Please confirm your registration");
+
+            //        await SendEmailAsync(user.Email, "Confirm your registration", body);
+
+
+            //        return Ok();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        return BadRequest(ex.Message);
+            //    }
+            //}
 
             var message = string.Join(", ", result.Errors.Select(error => error.Description));
 

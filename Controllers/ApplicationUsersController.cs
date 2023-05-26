@@ -23,12 +23,15 @@ namespace KorJoo.Controllers
     {
         private readonly ApplicationIdentityDbContext context;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<ApplicationRole> roleManager;
 
-
-        public ApplicationUsersController(ApplicationIdentityDbContext context, UserManager<ApplicationUser> userManager)
+        public ApplicationUsersController(ApplicationIdentityDbContext context,
+            UserManager<ApplicationUser> userManager,
+            RoleManager<ApplicationRole> roleManager)
         {
             this.context = context;
             this.userManager = userManager;
+            this.roleManager = roleManager;
         }
 
         partial void OnUsersRead(ref IQueryable<ApplicationUser> users);
@@ -139,12 +142,13 @@ namespace KorJoo.Controllers
             var password = user.Password;
             var roles = user.Roles;
             user.Roles = null;
-            IdentityResult result = await userManager.CreateAsync(user, password);
 
+            IdentityResult result = await userManager.CreateAsync(user, password);
+             
             if (result.Succeeded && roles != null)
             {
                 result = await userManager.AddToRolesAsync(user, roles.Select(r => r.Name));
-            }
+            } 
 
             user.Roles = roles;
 

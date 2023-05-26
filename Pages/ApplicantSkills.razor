@@ -1,16 +1,14 @@
-@page "/applicant-skills"
+﻿@page "/applicant-skills"
 @attribute [Authorize]
 
 @inject Microsoft.Extensions.Localization.IStringLocalizer<ApplicantSkills> L
-<PageTitle>ApplicantSkills</PageTitle>
+<PageTitle>Малакаҳо</PageTitle>
 <RadzenStack>
     <RadzenRow AlignItems="AlignItems.Center">
-        <RadzenColumn Size="12" SizeMD="6">
-            <RadzenText Text="ApplicantSkills" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
-        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">            <RadzenText Text="Малакаҳо" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />        </RadzenColumn>
         <RadzenColumn Size="12" SizeMD="6">
             <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
-                <RadzenButton Icon="add_circle_outline" Text="Add" Click="@AddButtonClick" Variant="Variant.Flat" />
+                <RadzenButton Icon="add_circle_outline" Text="Илова кардан" Click="@AddButtonClick" Variant="Variant.Flat" />
             </RadzenStack>
         </RadzenColumn>
     </RadzenRow>
@@ -19,8 +17,8 @@
         <RadzenDataGrid @ref="grid0" ColumnWidth="200px"  AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
             Data="@applicantSkills"    TItem="KorJoo.Models.korjoo.ApplicantSkill" RowSelect="@EditRow" >
             <Columns>
-                <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantSkill" Property="Id" Title="Id">
-                </RadzenDataGridColumn>
+               @* <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantSkill" Property="Id" Title="Id">
+                </RadzenDataGridColumn>*@
                 <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantSkill" Property="CreatedAt" Title="Created At">
                 </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantSkill" Property="Applicant.FirstName" Title="Applicant">

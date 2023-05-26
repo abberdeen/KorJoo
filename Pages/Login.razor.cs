@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -62,7 +62,7 @@ namespace KorJoo.Pages
             {
                 infoVisible = true;
 
-                info = "Registration accepted. Please check your email for further instructions.";
+                info = "Бақайдгирӣ қабул карда шуд. Лутфан ворид шавед.";
             }
         }
 
