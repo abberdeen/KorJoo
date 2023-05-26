@@ -41,7 +41,9 @@ namespace KorJoo.Pages
         protected SecurityService Security { get; set; }
         protected override async Task OnInitializedAsync()
         {
-            applicantSkills = await korjooService.GetApplicantSkills(new Query { Expand = "Applicant,Skill" });
+            var applicantId = await korjooService.GetApplicantIdByUserId(Security.User.Id);
+
+            applicantSkills = await korjooService.GetApplicantSkills(applicantId, new Query { Expand = "Applicant,Skill" });
         }
 
         protected async Task AddButtonClick(MouseEventArgs args)

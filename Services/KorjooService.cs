@@ -98,9 +98,9 @@ namespace KorJoo
             return await Task.FromResult(company.Id);
         }
 
-        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantCoursesTest>> GetApplicantCoursesTests(Query query = null)
+        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantCoursesTest>> GetApplicantCoursesTests(int? applicantId = null, Query query = null)
         {
-            var items = Context.ApplicantCoursesTests.AsQueryable();
+            var items = Context.ApplicantCoursesTests.Where(x => applicantId == null || x.ApplicantId == applicantId).AsQueryable();
 
             items = items.Include(i => i.Applicant);
 
@@ -261,9 +261,9 @@ namespace KorJoo
 
         partial void OnApplicantEducationHistoriesRead(ref IQueryable<KorJoo.Models.korjoo.ApplicantEducationHistory> items);
 
-        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantEducationHistory>> GetApplicantEducationHistories(Query query = null)
+        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantEducationHistory>> GetApplicantEducationHistories(int? applicantId = null, Query query = null)
         {
-            var items = Context.ApplicantEducationHistories.AsQueryable();
+            var items = Context.ApplicantEducationHistories.Where(x => applicantId == null || x.ApplicantId == applicantId).AsQueryable();
 
             items = items.Include(i => i.Applicant);
 
@@ -424,9 +424,9 @@ namespace KorJoo
 
         partial void OnApplicantLanguagesRead(ref IQueryable<KorJoo.Models.korjoo.ApplicantLanguage> items);
 
-        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantLanguage>> GetApplicantLanguages(Query query = null)
+        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantLanguage>> GetApplicantLanguages(int? applicantId = null, Query query = null)
         {
-            var items = Context.ApplicantLanguages.AsQueryable();
+            var items = Context.ApplicantLanguages.Where(x => applicantId == null || x.ApplicantId == applicantId).AsQueryable();
 
 
             if (query != null)
@@ -585,9 +585,10 @@ namespace KorJoo
 
         partial void OnApplicantPortofoliosRead(ref IQueryable<KorJoo.Models.korjoo.ApplicantPortofolio> items);
 
-        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantPortofolio>> GetApplicantPortofolios(Query query = null)
+        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantPortofolio>> GetApplicantPortofolios(int? applicantId = null, Query query = null )
         {
-            var items = Context.ApplicantPortofolios.AsQueryable();
+            var items = Context.ApplicantPortofolios.Where(x => applicantId == null || x.ApplicantId == applicantId)
+                .AsQueryable();
 
             items = items.Include(i => i.Applicant);
 
@@ -748,9 +749,9 @@ namespace KorJoo
 
         partial void OnApplicantSkillsRead(ref IQueryable<KorJoo.Models.korjoo.ApplicantSkill> items);
 
-        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantSkill>> GetApplicantSkills(Query query = null)
+        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantSkill>> GetApplicantSkills(int? applicantId = null, Query query = null)
         {
-            var items = Context.ApplicantSkills.AsQueryable();
+            var items = Context.ApplicantSkills.Where(x => applicantId == null || x.ApplicantId == applicantId).AsQueryable();
 
             items = items.Include(i => i.Applicant);
             items = items.Include(i => i.Skill);
@@ -913,9 +914,10 @@ namespace KorJoo
 
         partial void OnApplicantWorkHistoriesRead(ref IQueryable<KorJoo.Models.korjoo.ApplicantWorkHistory> items);
 
-        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantWorkHistory>> GetApplicantWorkHistories(Query query = null)
+        public async Task<IQueryable<KorJoo.Models.korjoo.ApplicantWorkHistory>> GetApplicantWorkHistories(int? applicantId = null, Query query = null )
         {
-            var items = Context.ApplicantWorkHistories.AsQueryable();
+            var items = Context.ApplicantWorkHistories
+                .Where(x => applicantId == null || x.ApplicantId == applicantId).AsQueryable();
 
             items = items.Include(i => i.Applicant);
 

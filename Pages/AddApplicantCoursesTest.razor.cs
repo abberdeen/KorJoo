@@ -47,6 +47,9 @@ namespace KorJoo.Pages
         {
             try
             {
+                var applicantId = await korjooService.GetApplicantIdByUserId(Security.User.Id);
+                applicantCoursesTest.ApplicantId = applicantId;
+
                 await korjooService.CreateApplicantCoursesTest(applicantCoursesTest);
                 DialogService.Close(applicantCoursesTest);
             }

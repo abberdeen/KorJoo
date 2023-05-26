@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
+using KorJoo.Models.korjoo;
 
 namespace KorJoo.Pages
 {
@@ -47,6 +48,9 @@ namespace KorJoo.Pages
         {
             try
             {
+                var applicantId = await korjooService.GetApplicantIdByUserId(Security.User.Id);
+                applicantPortofolio.ApplicantId = applicantId;
+
                 await korjooService.CreateApplicantPortofolio(applicantPortofolio);
                 DialogService.Close(applicantPortofolio);
             }

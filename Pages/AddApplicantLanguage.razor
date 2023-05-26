@@ -7,11 +7,11 @@
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save ApplicantLanguage</RadzenAlert>
         <RadzenTemplateForm TItem="KorJoo.Models.korjoo.ApplicantLanguage" Data="@applicantLanguage" Visible="@(applicantLanguage != null && canEdit)" Submit="@FormSubmit">
           <RadzenStack>
-            <RadzenFormField Text="Applicant Id" Variant="Variant.Outlined">
+      @*      <RadzenFormField Text="Applicant Id" Variant="Variant.Outlined">
                   <ChildContent>
                     <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicantLanguage.ApplicantId" Name="ApplicantId" />
               </ChildContent>
-            </RadzenFormField>
+            </RadzenFormField>*@
             <RadzenFormField Text="Language" Variant="Variant.Outlined">
                   <ChildContent>
                     <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicantLanguage.Language" Name="Language" />

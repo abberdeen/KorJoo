@@ -41,7 +41,9 @@ namespace KorJoo.Pages
         protected SecurityService Security { get; set; }
         protected override async Task OnInitializedAsync()
         {
-            applicantCoursesTests = await korjooService.GetApplicantCoursesTests(new Query { Expand = "Applicant" });
+            var applicantId = await korjooService.GetApplicantIdByUserId(Security.User.Id);
+
+            applicantCoursesTests = await korjooService.GetApplicantCoursesTests(applicantId, new Query { Expand = "Applicant" });
         }
 
         protected async Task AddButtonClick(MouseEventArgs args)
@@ -52,7 +54,7 @@ namespace KorJoo.Pages
 
         protected async Task EditRow(KorJoo.Models.korjoo.ApplicantCoursesTest args)
         {
-            await DialogService.OpenAsync<EditApplicantCoursesTest>("Edit ApplicantCoursesTest", new Dictionary<string, object> { {"Id", args.Id} });
+            await DialogService.OpenAsync<EditApplicantCoursesTest>("Edit ApplicantCoursesTest", new Dictionary<string, object> { { "Id", args.Id } });
         }
 
         protected async Task GridDeleteButtonClick(MouseEventArgs args, KorJoo.Models.korjoo.ApplicantCoursesTest applicantCoursesTest)
@@ -72,10 +74,10 @@ namespace KorJoo.Pages
             catch (Exception ex)
             {
                 NotificationService.Notify(new NotificationMessage
-                { 
+                {
                     Severity = NotificationSeverity.Error,
-                    Summary = $"Error", 
-                    Detail = $"Unable to delete ApplicantCoursesTest" 
+                    Summary = $"Error",
+                    Detail = $"Unable to delete ApplicantCoursesTest"
                 });
             }
         }

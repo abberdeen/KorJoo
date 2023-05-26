@@ -41,7 +41,10 @@ namespace KorJoo.Pages
         protected SecurityService Security { get; set; }
         protected override async Task OnInitializedAsync()
         {
-            applicantLanguages = await korjooService.GetApplicantLanguages();
+
+            var applicantId = await korjooService.GetApplicantIdByUserId(Security.User.Id);
+
+            applicantLanguages = await korjooService.GetApplicantLanguages(applicantId);
         }
 
         protected async Task AddButtonClick(MouseEventArgs args)

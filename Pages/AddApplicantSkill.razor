@@ -12,13 +12,13 @@
                     <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@applicantSkill.CreatedAt" Name="CreatedAt" />
               </ChildContent>
             </RadzenFormField>
-            <RadzenFormField Text="Applicant" Variant="Variant.Outlined">
+        @*    <RadzenFormField Text="Applicant" Variant="Variant.Outlined">
                   <ChildContent>
                     <RadzenDropDownDataGrid Data="@applicantsForApplicantId" TextProperty="FirstName" ValueProperty="Id" AllowClear=true
                           style="display: block; width: 100%" @bind-Value="@applicantSkill.ApplicantId" Name="ApplicantId"
                            />
               </ChildContent>
-            </RadzenFormField>
+            </RadzenFormField>*@
             <RadzenFormField Text="Skill" Variant="Variant.Outlined">
                   <ChildContent>
                     <RadzenDropDownDataGrid Data="@skillsForSkillId" TextProperty="Name" ValueProperty="Id" AllowClear=true

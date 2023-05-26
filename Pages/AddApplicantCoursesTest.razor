@@ -42,13 +42,13 @@
                     <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicantCoursesTest.CredentialUrl" Name="CredentialUrl" />
               </ChildContent>
             </RadzenFormField>
-            <RadzenFormField Text="Applicant" Variant="Variant.Outlined">
+          @*  <RadzenFormField Text="Applicant" Variant="Variant.Outlined">
                   <ChildContent>
                     <RadzenDropDownDataGrid Data="@applicantsForApplicantId" TextProperty="FirstName" ValueProperty="Id" AllowClear=true
                           style="display: block; width: 100%" @bind-Value="@applicantCoursesTest.ApplicantId" Name="ApplicantId"
                            />
               </ChildContent>
-            </RadzenFormField>
+            </RadzenFormField>*@
           </RadzenStack>
           <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
                     <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />

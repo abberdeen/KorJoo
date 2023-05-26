@@ -47,6 +47,9 @@ namespace KorJoo.Pages
         {
             try
             {
+                var applicantId = await korjooService.GetApplicantIdByUserId(Security.User.Id);
+                applicantWorkHistory.ApplicantId = applicantId;
+
                 await korjooService.CreateApplicantWorkHistory(applicantWorkHistory);
                 DialogService.Close(applicantWorkHistory);
             }

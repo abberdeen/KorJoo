@@ -7,11 +7,11 @@
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save ApplicantWorkHistory</RadzenAlert>
         <RadzenTemplateForm TItem="KorJoo.Models.korjoo.ApplicantWorkHistory" Data="@applicantWorkHistory" Visible="@(applicantWorkHistory != null && canEdit)" Submit="@FormSubmit">
           <RadzenStack>
-            <RadzenFormField Text="Company Id" Variant="Variant.Outlined">
+         @*   <RadzenFormField Text="Company Id" Variant="Variant.Outlined">
                   <ChildContent>
                     <RadzenNumeric style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.CompanyId" Name="CompanyId" />
               </ChildContent>
-            </RadzenFormField>
+            </RadzenFormField>*@
             <RadzenFormField Text="Company Name" Variant="Variant.Outlined">
                   <ChildContent>
                     <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.CompanyName" Name="CompanyName" />
@@ -47,7 +47,7 @@
             </RadzenRow>
             <RadzenFormField Text="Description" Variant="Variant.Outlined">
                   <ChildContent>
-                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.Description" Name="Description" />
+                    <RadzenTextArea style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.Description" Name="Description" />
               </ChildContent>
             </RadzenFormField>
             <RadzenRow style="margin-bottom: 1rem">
@@ -58,13 +58,13 @@
                     <RadzenCheckBox @bind-Value="@applicantWorkHistory.IsVoluntering" Name="IsVoluntering" />
                 </RadzenColumn>
             </RadzenRow>
-            <RadzenFormField Text="Applicant" Variant="Variant.Outlined">
+          @*  <RadzenFormField Text="Applicant" Variant="Variant.Outlined">
                   <ChildContent>
                     <RadzenDropDownDataGrid Data="@applicantsForApplicantId" TextProperty="FirstName" ValueProperty="Id" AllowClear=true
                           style="display: block; width: 100%" @bind-Value="@applicantWorkHistory.ApplicantId" Name="ApplicantId"
                            />
               </ChildContent>
-            </RadzenFormField>
+            </RadzenFormField>*@
           </RadzenStack>
           <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
                     <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
