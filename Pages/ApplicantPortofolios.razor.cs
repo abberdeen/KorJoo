@@ -36,6 +36,9 @@ namespace KorJoo.Pages
         protected IEnumerable<KorJoo.Models.korjoo.ApplicantPortofolio> applicantPortofolios;
 
         protected RadzenDataGrid<KorJoo.Models.korjoo.ApplicantPortofolio> grid0;
+
+        [Inject]
+        protected SecurityService Security { get; set; }
         protected override async Task OnInitializedAsync()
         {
             applicantPortofolios = await korjooService.GetApplicantPortofolios(new Query { Expand = "Applicant" });

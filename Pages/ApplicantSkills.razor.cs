@@ -36,6 +36,9 @@ namespace KorJoo.Pages
         protected IEnumerable<KorJoo.Models.korjoo.ApplicantSkill> applicantSkills;
 
         protected RadzenDataGrid<KorJoo.Models.korjoo.ApplicantSkill> grid0;
+
+        [Inject]
+        protected SecurityService Security { get; set; }
         protected override async Task OnInitializedAsync()
         {
             applicantSkills = await korjooService.GetApplicantSkills(new Query { Expand = "Applicant,Skill" });

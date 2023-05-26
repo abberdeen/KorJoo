@@ -1,5 +1,7 @@
-@page "/applicant-education-histories"
+@page "/applicant-education-histories"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<ApplicantEducationHistories> L
 <PageTitle>ApplicantEducationHistories</PageTitle>
 <RadzenStack>
     <RadzenRow AlignItems="AlignItems.Center">

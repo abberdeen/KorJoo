@@ -36,6 +36,9 @@ namespace KorJoo.Pages
         protected IEnumerable<KorJoo.Models.korjoo.Citiie> citiies;
 
         protected RadzenDataGrid<KorJoo.Models.korjoo.Citiie> grid0;
+
+        [Inject]
+        protected SecurityService Security { get; set; }
         protected override async Task OnInitializedAsync()
         {
             citiies = await korjooService.GetCitiies();

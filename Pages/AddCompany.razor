@@ -1,5 +1,7 @@
-@page "/add-company"
+@page "/add-company"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddCompany> L
 <PageTitle>Add Company</PageTitle>
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Company</RadzenAlert>

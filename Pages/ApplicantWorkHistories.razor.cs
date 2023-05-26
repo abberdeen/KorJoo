@@ -36,6 +36,9 @@ namespace KorJoo.Pages
         protected IEnumerable<KorJoo.Models.korjoo.ApplicantWorkHistory> applicantWorkHistories;
 
         protected RadzenDataGrid<KorJoo.Models.korjoo.ApplicantWorkHistory> grid0;
+
+        [Inject]
+        protected SecurityService Security { get; set; }
         protected override async Task OnInitializedAsync()
         {
             applicantWorkHistories = await korjooService.GetApplicantWorkHistories(new Query { Expand = "Applicant" });

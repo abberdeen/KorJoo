@@ -1,5 +1,7 @@
-@page "/edit-specialization"
+@page "/edit-specialization"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<EditSpecialization> L
 <PageTitle>Edit Specialization</PageTitle>
 <RadzenRow>
     <RadzenColumn SizeMD="9">

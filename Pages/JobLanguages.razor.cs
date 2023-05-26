@@ -36,6 +36,9 @@ namespace KorJoo.Pages
         protected IEnumerable<KorJoo.Models.korjoo.JobLanguage> jobLanguages;
 
         protected RadzenDataGrid<KorJoo.Models.korjoo.JobLanguage> grid0;
+
+        [Inject]
+        protected SecurityService Security { get; set; }
         protected override async Task OnInitializedAsync()
         {
             jobLanguages = await korjooService.GetJobLanguages(new Query { Expand = "Job" });

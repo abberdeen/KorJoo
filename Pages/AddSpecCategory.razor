@@ -1,5 +1,7 @@
-@page "/add-spec-category"
+@page "/add-spec-category"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddSpecCategory> L
 <PageTitle>Add SpecCategory</PageTitle>
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save SpecCategory</RadzenAlert>

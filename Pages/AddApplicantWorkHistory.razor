@@ -1,5 +1,7 @@
-@page "/add-applicant-work-history"
+@page "/add-applicant-work-history"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddApplicantWorkHistory> L
 <PageTitle>Add ApplicantWorkHistory</PageTitle>
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save ApplicantWorkHistory</RadzenAlert>

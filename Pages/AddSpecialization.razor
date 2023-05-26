@@ -1,5 +1,7 @@
-@page "/add-specialization"
+@page "/add-specialization"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddSpecialization> L
 <PageTitle>Add Specialization</PageTitle>
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Specialization</RadzenAlert>

@@ -1,5 +1,7 @@
-@page "/edit-spec-category"
+@page "/edit-spec-category"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<EditSpecCategory> L
 <PageTitle>Edit SpecCategory</PageTitle>
 <RadzenRow>
     <RadzenColumn SizeMD="9">

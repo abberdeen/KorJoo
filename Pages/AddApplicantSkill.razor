@@ -1,5 +1,7 @@
-@page "/add-applicant-skill"
+@page "/add-applicant-skill"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddApplicantSkill> L
 <PageTitle>Add ApplicantSkill</PageTitle>
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save ApplicantSkill</RadzenAlert>

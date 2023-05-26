@@ -36,6 +36,9 @@ namespace KorJoo.Pages
         protected IEnumerable<KorJoo.Models.korjoo.Job> jobs;
 
         protected RadzenDataGrid<KorJoo.Models.korjoo.Job> grid0;
+
+        [Inject]
+        protected SecurityService Security { get; set; }
         protected override async Task OnInitializedAsync()
         {
             jobs = await korjooService.GetJobs();

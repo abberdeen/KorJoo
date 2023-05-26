@@ -1,5 +1,7 @@
-@page "/add-skill"
+@page "/add-skill"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddSkill> L
 <PageTitle>Add Skill</PageTitle>
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Skill</RadzenAlert>

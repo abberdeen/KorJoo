@@ -1,5 +1,7 @@
-@page "/add-job-skill"
+@page "/add-job-skill"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddJobSkill> L
 <PageTitle>Add JobSkill</PageTitle>
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save JobSkill</RadzenAlert>

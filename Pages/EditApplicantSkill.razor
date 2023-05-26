@@ -1,5 +1,7 @@
-@page "/edit-applicant-skill"
+@page "/edit-applicant-skill"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<EditApplicantSkill> L
 <PageTitle>Edit ApplicantSkill</PageTitle>
 <RadzenRow>
     <RadzenColumn SizeMD="9">

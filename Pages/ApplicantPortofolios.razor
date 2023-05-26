@@ -1,5 +1,7 @@
-@page "/applicant-portofolios"
+@page "/applicant-portofolios"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<ApplicantPortofolios> L
 <PageTitle>ApplicantPortofolios</PageTitle>
 <RadzenStack>
     <RadzenRow AlignItems="AlignItems.Center">

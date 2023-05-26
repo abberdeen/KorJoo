@@ -36,6 +36,9 @@ namespace KorJoo.Pages
         protected IEnumerable<KorJoo.Models.korjoo.Specialization> specializations;
 
         protected RadzenDataGrid<KorJoo.Models.korjoo.Specialization> grid0;
+
+        [Inject]
+        protected SecurityService Security { get; set; }
         protected override async Task OnInitializedAsync()
         {
             specializations = await korjooService.GetSpecializations(new Query { Expand = "SpecCategory" });

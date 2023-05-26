@@ -1,5 +1,7 @@
-@page "/edit-citiie"
+@page "/edit-citiie"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<EditCitiie> L
 <PageTitle>Edit Citiie</PageTitle>
 <RadzenRow>
     <RadzenColumn SizeMD="9">

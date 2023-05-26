@@ -1,5 +1,7 @@
-@page "/add-citiie"
+@page "/add-citiie"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddCitiie> L
 <PageTitle>Add Citiie</PageTitle>
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Citiie</RadzenAlert>

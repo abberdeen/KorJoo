@@ -1,5 +1,7 @@
-@page "/add-applicant-language"
+@page "/add-applicant-language"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddApplicantLanguage> L
 <PageTitle>Add ApplicantLanguage</PageTitle>
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save ApplicantLanguage</RadzenAlert>

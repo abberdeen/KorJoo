@@ -62,5 +62,8 @@ namespace KorJoo.Pages
 
         protected bool hasChanges = false;
         protected bool canEdit = true;
+
+        [Inject]
+        protected SecurityService Security { get; set; }
     }
 }

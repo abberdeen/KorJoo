@@ -1,5 +1,7 @@
-@page "/edit-applicant"
+@page "/edit-applicant"
+@attribute [Authorize]
 
+@inject Microsoft.Extensions.Localization.IStringLocalizer<EditApplicant> L
 <PageTitle>Edit Applicant</PageTitle>
 <RadzenRow>
     <RadzenColumn SizeMD="9">

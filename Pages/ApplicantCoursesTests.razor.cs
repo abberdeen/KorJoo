@@ -36,6 +36,9 @@ namespace KorJoo.Pages
         protected IEnumerable<KorJoo.Models.korjoo.ApplicantCoursesTest> applicantCoursesTests;
 
         protected RadzenDataGrid<KorJoo.Models.korjoo.ApplicantCoursesTest> grid0;
+
+        [Inject]
+        protected SecurityService Security { get; set; }
         protected override async Task OnInitializedAsync()
         {
             applicantCoursesTests = await korjooService.GetApplicantCoursesTests(new Query { Expand = "Applicant" });
