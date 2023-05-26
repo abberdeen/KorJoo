@@ -1,0 +1,39 @@
+@page "/applicant-courses-tests"
+
+@inject Microsoft.Extensions.Localization.IStringLocalizer<ApplicantCoursesTests> L
+
+<RadzenColumn SizeMD=12>
+    <RadzenDataGrid @ref="grid0" ColumnWidth="200px" AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+                    Data="@applicantCoursesTests" TItem="KorJoo.Models.korjoo.ApplicantCoursesTest" RowSelect="@EditRow">
+        <Columns>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantCoursesTest" Property="Id" Title="Id">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantCoursesTest" Property="Type" Title="Type">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantCoursesTest" Property="Title" Title="Title">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantCoursesTest" Property="Organization" Title="Organization">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantCoursesTest" Property="OrganizationCompanyId" Title="Organization Company Id">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantCoursesTest" Property="Specialization" Title="Specialization">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantCoursesTest" Property="IssueDate" Title="Issue Date">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantCoursesTest" Property="CredentialUrl" Title="Credential Url">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantCoursesTest" Property="Applicant.FirstName" Title="Applicant">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantCoursesTest" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                <Template Context="applicantCoursesTest">
+
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
+                                  Shade="Shade.Lighter" Variant="Variant.Flat"
+                                  Click=@(args => GridDeleteButtonClick(args, applicantCoursesTest)) @onclick:stopPropagation="true" />
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+
+    </RadzenDataGrid>
+
+</RadzenColumn>

@@ -1,0 +1,27 @@
+@inject Microsoft.Extensions.Localization.IStringLocalizer<ApplicantLanguages> L
+
+<RadzenColumn SizeMD=12>
+    <RadzenDataGrid @ref="grid0" ColumnWidth="200px" AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+                    Data="@applicantLanguages" TItem="KorJoo.Models.korjoo.ApplicantLanguage" RowSelect="@EditRow">
+        <Columns>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantLanguage" Property="Id" Title="Id">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantLanguage" Property="ApplicantId" Title="Applicant Id">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantLanguage" Property="Language" Title="Language">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantLanguage" Property="LanguageLevel" Title="Language Level">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="KorJoo.Models.korjoo.ApplicantLanguage" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                <Template Context="applicantLanguage">
+
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
+                                  Shade="Shade.Lighter" Variant="Variant.Flat"
+                                  Click=@(args => GridDeleteButtonClick(args, applicantLanguage)) @onclick:stopPropagation="true" />
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+
+    </RadzenDataGrid>
+
+</RadzenColumn>
