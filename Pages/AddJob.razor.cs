@@ -43,6 +43,9 @@ namespace KorJoo.Pages
         {
             try
             {
+                var companyId = await korjooService.GetCompanyIdByUserId(Security.User.Id);
+                    
+                job.CompanyId = companyId;
                 await korjooService.CreateJob(job);
                 DialogService.Close(job);
             }

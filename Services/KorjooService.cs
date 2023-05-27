@@ -1889,12 +1889,17 @@ namespace KorJoo
 
         partial void OnJobsRead(ref IQueryable<KorJoo.Models.korjoo.Job> items);
 
-        public async Task<IQueryable<KorJoo.Models.korjoo.Job>> GetJobs(Query query = null)
+        public async Task<IQueryable<KorJoo.Models.korjoo.Job>> GetJobs(int? companyId = null, Query query = null)
         {
+
             var items = Context.Jobs.AsQueryable();
 
+            if (companyId.HasValue) 
+            {
+                items = items.Where(x => x.CompanyId == companyId);
+            }
 
-            if (query != null)
+                if (query != null)
             {
                 if (!string.IsNullOrEmpty(query.Expand))
                 {

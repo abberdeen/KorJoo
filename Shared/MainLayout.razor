@@ -23,6 +23,14 @@
         </RadzenStack>
         <RadzenPanelMenu>
             <RadzenPanelMenuItem Text="Саҳифаи аввал" Path="" />
+            <AuthorizeView Roles="company, hragency">
+                <Authorized>
+                    <RadzenPanelMenu>
+                        <RadzenPanelMenuItem Text="Иловаи ҷои корӣ" Path="/company-jobs/add" />
+                        <RadzenPanelMenuItem Text="Рӯйхати ҷойҳои корӣ" Path="/company-jobs/list" />
+                    </RadzenPanelMenu>
+                </Authorized>
+            </AuthorizeView>
             <AuthorizeView Roles="applicant">
                 <Authorized>
                     <RadzenPanelMenuItem Text="Анкетаи ман" Path="/edit-applicant/" />

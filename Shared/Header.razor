@@ -20,8 +20,11 @@
         </RadzenColumn>
         <RadzenColumn Size="4">
             <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End">
+                <RadzenMenu Click="OnParentClicked">
+                    <RadzenMenuItem Text="Воридшавӣ" Path="/login" Icon="" Visible="@(!Security.IsAuthenticated())" />
+                </RadzenMenu>
                 @* <CulturePicker /> *@
-                <RadzenProfileMenu Visible="@Security.IsAuthenticated()" Click="@ProfileMenuClick">
+                <RadzenProfileMenu Visible="@(Security.IsAuthenticated())" Click="@ProfileMenuClick">
                     <ChildContent>
                         <RadzenProfileMenuItem Path="profile" Icon="settings" Text="Profile" />
                         <RadzenProfileMenuItem Path="application-users" Icon="person" Text="Users" />

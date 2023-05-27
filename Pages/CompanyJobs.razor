@@ -1,10 +1,11 @@
-﻿@page "/jobs" 
+﻿@page "/company-jobs/list"
+@attribute [Authorize]
 
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Jobs> L
 <PageTitle>Ҷойҳои корӣ</PageTitle>
 <RadzenStack>
     <RadzenRow AlignItems="AlignItems.Center">
-        <RadzenColumn Size="12" SizeMD="6">            <RadzenText Text="Ҷойҳои корӣ" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">            <RadzenText Text="Ҷойҳои корӣ корхона" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />        </RadzenColumn>
         <RadzenColumn Size="12" SizeMD="6">
             <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">                <AuthorizeView Roles="company,hragency">                    <Authorized>                        <RadzenButton Icon="add_circle_outline" Text="Илова кардан" Click="@AddButtonClick" Variant="Variant.Flat" />                    </Authorized>                </AuthorizeView>            </RadzenStack>
         </RadzenColumn>

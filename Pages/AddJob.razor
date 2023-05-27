@@ -1,4 +1,4 @@
-@page "/add-job"
+@page "/company-jobs/add"
 @attribute [Authorize]
 
 @inject Microsoft.Extensions.Localization.IStringLocalizer<AddJob> L
@@ -7,7 +7,7 @@
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Job</RadzenAlert>
         <RadzenTemplateForm TItem="KorJoo.Models.korjoo.Job" Data="@job" Visible="@(job != null && canEdit)" Submit="@FormSubmit">
           <RadzenStack>
-            <RadzenFormField Text="Specialization Id" Variant="Variant.Outlined">
+           @* <RadzenFormField Text="Specialization Id" Variant="Variant.Outlined">
                   <ChildContent>
                     <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.SpecializationId" Name="SpecializationId" />
               </ChildContent>
@@ -16,8 +16,8 @@
                   <ChildContent>
                     <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.CityId" Name="CityId" />
               </ChildContent>
-            </RadzenFormField>
-            <RadzenFormField Text="Name" Variant="Variant.Outlined">
+            </RadzenFormField>*@
+           <RadzenFormField Text="Name" Variant="Variant.Outlined">
                   <ChildContent>
                     <RadzenTextBox style="display: block; width: 100%" @bind-Value="@job.Name" Name="Name" />
               </ChildContent>
@@ -96,11 +96,11 @@
                     <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.WorkScheduleType" Name="WorkScheduleType" />
               </ChildContent>
             </RadzenFormField>
-            <RadzenFormField Text="Company Id" Variant="Variant.Outlined">
+           @* <RadzenFormField Text="Company Id" Variant="Variant.Outlined">
                   <ChildContent>
                     <RadzenNumeric style="display: block; width: 100%" @bind-Value="@job.CompanyId" Name="CompanyId" />
               </ChildContent>
-            </RadzenFormField>
+            </RadzenFormField>*@
           </RadzenStack>
           <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
                     <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
